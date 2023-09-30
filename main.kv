@@ -1,0 +1,452 @@
+<ContentNavigationDrawer>:
+    orientation: "vertical"
+    FloatLayout:
+        size_hint_y: None
+        height: "200dp"
+        BoxLayout:
+            id: box_image
+            x: root.x
+            pos_hint: {"top": 1}
+
+            FitImage:
+                source: "./foto.jpg"
+                size_hint_y: 1
+                pos_hint: {"top": 1}
+                radius: 36, 36, 36, 36
+    ScrollView:
+        MDList:
+            OneLineIconListItem:
+                text: "Notas Musicais"
+                IconLeftWidget:
+                    icon: "music"
+
+            OneLineListItem:
+                text: "Campo Harmônico\n Maior Natural"
+                on_press:
+                    root.nav_drawer.set_state("close")
+                    root.screen_manager.current = "chmaior"
+            OneLineListItem:
+                text: "Campo Harmônico\n Menor Natural"
+                on_press:
+                    root.nav_drawer.set_state("close")
+                    root.screen_manager.current = "chmenor"
+            OneLineListItem:
+                text: "Campo Harmônico\n Menor Harmônica"
+                on_press:
+                    root.nav_drawer.set_state("close")
+                    root.screen_manager.current = "chmenorhar"
+            OneLineListItem:
+                text: "Campo Harmônico\n Menor Melódico"
+                on_press:
+                    root.nav_drawer.set_state("close")
+                    root.screen_manager.current = "chmenormel"
+            OneLineListItem:
+                text: "Escala Maior Natural"
+                on_press:
+                    root.nav_drawer.set_state("close")
+                    root.screen_manager.current = "esmaiornat"
+            OneLineListItem:
+                text: "Escala Menor Natural"
+                on_press:
+                    root.nav_drawer.set_state("close")
+                    root.screen_manager.current = "esmenornat"
+            OneLineListItem:
+                text: "Escala Menor Harmônica"
+                on_press:
+                    root.nav_drawer.set_state("close")
+                    root.screen_manager.current = "esmenorhar"
+            OneLineListItem:
+                text: "Escala Menor Melódica"
+                on_press:
+                    root.nav_drawer.set_state("close")
+                    root.screen_manager.current = "esmenormel"
+            OneLineListItem:
+                text: "Escala Penta Maior"
+                on_press:
+                    root.nav_drawer.set_state("close")
+                    root.screen_manager.current = "espentamaior"
+            OneLineListItem:
+                text: "Escala Penta Menor"
+                on_press:
+                    root.nav_drawer.set_state("close")
+                    root.screen_manager.current = "espentamenor"
+
+
+MDScreen:
+
+    MDTopAppBar:
+        title: "Notas Musicais "
+        elevation: 4
+        pos_hint: {"top": 1}
+        md_bg_color: "#008B8B"
+        specific_text_color: "#000000"
+        left_action_items: [['menu', lambda x: nav_drawer.set_state("open")]]
+
+
+    MDNavigationLayout:
+
+
+        MDScreenManager:
+            id: screen_manager
+
+            ScreenHarmonicoMaiorNatural
+            ScreenHarmonicoMenorNatural
+            ScreenHarmonicoMenorHarmonica
+            ScreenHarmonicoMenorMelodico
+            ScreenEscalaMaiorNatural
+            ScreenEscalaMenorNatural
+            ScreenEscalaMenorHarmonica
+            ScreenEscalaMenorMelodica
+            ScreenEscalaPentaMaior
+            ScreenEscalaPentaMenor
+
+
+        MDNavigationDrawer:
+            id: nav_drawer
+            radius: (0, 16, 16, 0)
+
+            ContentNavigationDrawer:
+                screen_manager: screen_manager
+                nav_drawer: nav_drawer
+
+
+<ScreenHarmonicoMaiorNatural>:
+    name: "chmaior"
+
+    MDLabel:
+        text: "Campo Harmônico\n Maior Natural"
+        halign: "center"
+        pos_hint: {"center_x": 0.5, "center_y": 0.84}
+
+
+    MDTextField:
+        id:chm
+        hint_text: "Digite o Tom"
+        mode: "rectangle"
+        pos_hint: {"center_x": 0.5, "center_y": 0.65}
+        size_hint_x: 0.5
+    MDRaisedButton:
+        text: "Achar"
+        md_bg_color: "blue"
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        size_hint_x: 0.5
+        on_press: root.achar()
+    MDLabel:
+        id: resposta
+        text: ''
+        font_size: 30
+        halign: "center"
+        pos_hint: {"center_x": 0.5, "center_y": 0.3}
+    MDFillRoundFlatButton:
+        text: '[size=17]Dica[/size]'
+        pos_hint: {'center_x': 0.8, 'center_y': 0.75}
+        size_hint: 0.1, 0.1
+        md_bg_color: app.theme_cls.primary_dark
+        on_press: root.dicas()
+
+<ScreenHarmonicoMenorNatural>:
+    name: "chmenor"
+
+    MDLabel:
+        text: "Campo Harmônico\n Maior Natural"
+        halign: "center"
+        pos_hint: {"center_x": 0.5, "center_y": 0.84}
+
+
+    MDTextField:
+        id:chme
+        hint_text: "Digite o Tom"
+        mode: "rectangle"
+        pos_hint: {"center_x": 0.5, "center_y": 0.65}
+        size_hint_x: 0.5
+    MDRaisedButton:
+        text: "Achar"
+        md_bg_color: "blue"
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        size_hint_x: 0.5
+        on_press: root.achar()
+    MDLabel:
+        id: resposta
+        text: ''
+        font_size: 30
+        halign: "center"
+        pos_hint: {"center_x": 0.5, "center_y": 0.3}
+    MDFillRoundFlatButton:
+        text: '[size=17]Dica[/size]'
+        pos_hint: {'center_x': 0.8, 'center_y': 0.75}
+        size_hint: 0.1, 0.1
+        md_bg_color: app.theme_cls.primary_dark
+        on_press: root.dicas()
+
+<ScreenHarmonicoMenorHarmonica>:
+    name: "chmenorhar"
+
+    MDLabel:
+        text: "Campo Harmônico\n Maior Harmônica"
+        halign: "center"
+        pos_hint: {"center_x": 0.5, "center_y": 0.84}
+
+
+    MDTextField:
+        id:chmehar
+        hint_text: "Digite o Tom"
+        mode: "rectangle"
+        pos_hint: {"center_x": 0.5, "center_y": 0.65}
+        size_hint_x: 0.5
+    MDRaisedButton:
+        text: "Achar"
+        md_bg_color: "blue"
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        size_hint_x: 0.5
+        on_press: root.achar()
+    MDLabel:
+        id: resposta
+        text: ''
+        font_size: 30
+        halign: "center"
+        pos_hint: {"center_x": 0.5, "center_y": 0.3}
+    MDFillRoundFlatButton:
+        text: '[size=17]Dica[/size]'
+        pos_hint: {'center_x': 0.8, 'center_y': 0.75}
+        size_hint: 0.1, 0.1
+        md_bg_color: app.theme_cls.primary_dark
+        on_press: root.dicas()
+
+<ScreenHarmonicoMenorMelodico>:
+    name: "chmenormel"
+
+    MDLabel:
+        text: "Campo Harmônico\n Maior Harmônica"
+        halign: "center"
+        pos_hint: {"center_x": 0.5, "center_y": 0.84}
+
+
+    MDTextField:
+        id:chmemel
+        hint_text: "Digite o Tom"
+        mode: "rectangle"
+        pos_hint: {"center_x": 0.5, "center_y": 0.65}
+        size_hint_x: 0.5
+    MDRaisedButton:
+        text: "Achar"
+        md_bg_color: "blue"
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        size_hint_x: 0.5
+        on_press: root.achar()
+    MDLabel:
+        id: resposta
+        text: ''
+        font_size: 30
+        halign: "center"
+        pos_hint: {"center_x": 0.5, "center_y": 0.3}
+    MDFillRoundFlatButton:
+        text: '[size=17]Dica[/size]'
+        pos_hint: {'center_x': 0.8, 'center_y': 0.75}
+        size_hint: 0.1, 0.1
+        md_bg_color: app.theme_cls.primary_dark
+        on_press: root.dicas()
+
+<ScreenEscalaMaiorNatural>:
+    name: "esmaiornat"
+
+    MDLabel:
+        text: "Escala Maior Natural"
+        halign: "center"
+        pos_hint: {"center_x": 0.5, "center_y": 0.84}
+
+
+    MDTextField:
+        id:esmanat
+        hint_text: "Digite o Tom"
+        mode: "rectangle"
+        pos_hint: {"center_x": 0.5, "center_y": 0.65}
+        size_hint_x: 0.5
+    MDRaisedButton:
+        text: "Achar"
+        md_bg_color: "blue"
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        size_hint_x: 0.5
+        on_press: root.achar()
+    MDLabel:
+        id: resposta
+        text: ''
+        font_size: 30
+        halign: "center"
+        pos_hint: {"center_x": 0.5, "center_y": 0.3}
+    MDFillRoundFlatButton:
+        text: '[size=17]Dica[/size]'
+        pos_hint: {'center_x': 0.8, 'center_y': 0.75}
+        size_hint: 0.1, 0.1
+        md_bg_color: app.theme_cls.primary_dark
+        on_press: root.dicas()
+
+<ScreenEscalaMenorNatural>:
+    name: "esmenornat"
+
+    MDLabel:
+        text: "Escala Menor Natural"
+        halign: "center"
+        pos_hint: {"center_x": 0.5, "center_y": 0.84}
+
+
+    MDTextField:
+        id:esmenat
+        hint_text: "Digite o Tom"
+        mode: "rectangle"
+        pos_hint: {"center_x": 0.5, "center_y": 0.65}
+        size_hint_x: 0.5
+    MDRaisedButton:
+        text: "Achar"
+        md_bg_color: "blue"
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        size_hint_x: 0.5
+        on_press: root.achar()
+    MDLabel:
+        id: resposta
+        text: ''
+        font_size: 30
+        halign: "center"
+        pos_hint: {"center_x": 0.5, "center_y": 0.3}
+    MDFillRoundFlatButton:
+        text: '[size=17]Dica[/size]'
+        pos_hint: {'center_x': 0.8, 'center_y': 0.75}
+        size_hint: 0.1, 0.1
+        md_bg_color: app.theme_cls.primary_dark
+        on_press: root.dicas()
+
+<ScreenEscalaMenorHarmonica>:
+    name: "esmenorhar"
+
+    MDLabel:
+        text: "Escala Menor Harmônica"
+        halign: "center"
+        pos_hint: {"center_x": 0.5, "center_y": 0.84}
+
+
+    MDTextField:
+        id:esmehar
+        hint_text: "Digite o Tom"
+        mode: "rectangle"
+        pos_hint: {"center_x": 0.5, "center_y": 0.65}
+        size_hint_x: 0.5
+    MDRaisedButton:
+        text: "Achar"
+        md_bg_color: "blue"
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        size_hint_x: 0.5
+        on_press: root.achar()
+    MDLabel:
+        id: resposta
+        text: ''
+        font_size: 30
+        halign: "center"
+        pos_hint: {"center_x": 0.5, "center_y": 0.3}
+    MDFillRoundFlatButton:
+        text: '[size=17]Dica[/size]'
+        pos_hint: {'center_x': 0.8, 'center_y': 0.75}
+        size_hint: 0.1, 0.1
+        md_bg_color: app.theme_cls.primary_dark
+        on_press: root.dicas()
+
+<ScreenEscalaMenorMelodica>:
+    name: "esmenormel"
+
+    MDLabel:
+        text: "Escala Menor Melódica"
+        halign: "center"
+        pos_hint: {"center_x": 0.5, "center_y": 0.84}
+
+
+    MDTextField:
+        id:esmemel
+        hint_text: "Digite o Tom"
+        mode: "rectangle"
+        pos_hint: {"center_x": 0.5, "center_y": 0.65}
+        size_hint_x: 0.5
+    MDRaisedButton:
+        text: "Achar"
+        md_bg_color: "blue"
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        size_hint_x: 0.5
+        on_press: root.achar()
+    MDLabel:
+        id: resposta
+        text: ''
+        font_size: 30
+        halign: "center"
+        pos_hint: {"center_x": 0.5, "center_y": 0.3}
+    MDFillRoundFlatButton:
+        text: '[size=17]Dica[/size]'
+        pos_hint: {'center_x': 0.8, 'center_y': 0.75}
+        size_hint: 0.1, 0.1
+        md_bg_color: app.theme_cls.primary_dark
+        on_press: root.dicas()
+
+<ScreenEscalaPentaMaior>:
+    name: "espentamaior"
+
+    MDLabel:
+        text: "Escala Penta Maior"
+        halign: "center"
+        pos_hint: {"center_x": 0.5, "center_y": 0.84}
+
+
+    MDTextField:
+        id:espenma
+        hint_text: "Digite o Tom"
+        mode: "rectangle"
+        pos_hint: {"center_x": 0.5, "center_y": 0.65}
+        size_hint_x: 0.5
+    MDRaisedButton:
+        text: "Achar"
+        md_bg_color: "blue"
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        size_hint_x: 0.5
+        on_press: root.achar()
+    MDLabel:
+        id: resposta
+        text: ''
+        font_size: 30
+        halign: "center"
+        pos_hint: {"center_x": 0.5, "center_y": 0.3}
+    MDFillRoundFlatButton:
+        text: '[size=17]Dica[/size]'
+        pos_hint: {'center_x': 0.8, 'center_y': 0.75}
+        size_hint: 0.1, 0.1
+        md_bg_color: app.theme_cls.primary_dark
+        on_press: root.dicas()
+
+<ScreenEscalaPentaMenor>:
+    name: "espentamenor"
+
+    MDLabel:
+        text: "Escala Penta Menor"
+        halign: "center"
+        pos_hint: {"center_x": 0.5, "center_y": 0.84}
+
+
+    MDTextField:
+        id:espenme
+        hint_text: "Digite o Tom"
+        mode: "rectangle"
+        pos_hint: {"center_x": 0.5, "center_y": 0.65}
+        size_hint_x: 0.5
+    MDRaisedButton:
+        text: "Achar"
+        md_bg_color: "blue"
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        size_hint_x: 0.5
+        on_press: root.achar()
+    MDLabel:
+        id: resposta
+        text: ''
+        font_size: 30
+        halign: "center"
+        pos_hint: {"center_x": 0.5, "center_y": 0.3}
+    MDFillRoundFlatButton:
+        text: '[size=17]Dica[/size]'
+        pos_hint: {'center_x': 0.8, 'center_y': 0.75}
+        size_hint: 0.1, 0.1
+        md_bg_color: app.theme_cls.primary_dark
+        on_press: root.dicas()
+
